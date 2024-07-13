@@ -37,27 +37,27 @@ Containerd versions can be found in this location :  https://github.com/containe
 
 ### Download :
 ```bash
-  wget https://github.com/containerd/containerd/releases/download/v1.6.14/containerd-1.6.14-linux-amd64.tar.gz
+  wget https://github.com/containerd/containerd/releases/download/v1.7.19/containerd-1.7.19-linux-arm64.tar.gz
 ```
 ### Unpack : 
 ```bash
-  sudo tar Cxzvf /usr/local containerd-1.6.14-linux-amd64.tar.gz
+  sudo tar Cxzvf /usr/local containerd-1.7.19-linux-arm64.tar.gz
 ```
 
 ## Step 2 : Install runc
 
 Runc is a standardized runtime for spawning and running containers on Linux according to the OCI specification
 ```bash
-  wget https://github.com/opencontainers/runc/releases/download/v1.1.3/runc.amd64
-  sudo install -m 755 runc.amd64 /usr/local/sbin/runc
+  wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.arm64 
+  sudo install -m 755 runc.arm64 /usr/local/sbin/runc
 ```
 
 ## Step 3: Download and install CNI plugins :
 
 ```bash
-  wget https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-amd64-v1.1.1.tgz
+  wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-arm64-v1.5.1.tgz
   sudo mkdir -p /opt/cni/bin
-  sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.1.1.tgz
+  sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-arm64-v1.5.1.tgz
 ```
 
 ## Step 4: Configure containerd
@@ -88,8 +88,8 @@ sudo systemctl status containerd
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 sudo mkdir -p /etc/apt/keyrings/
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 ```
